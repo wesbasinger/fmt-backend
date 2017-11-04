@@ -1,0 +1,10 @@
+{
+  "name": "fmt-backend",
+  "version": "1.0.0",
+  "description": "Serverless CRUD service exposing a REST HTTP interface",
+  "author": "Wes Basinger",
+  "license": "MIT",
+  "dependencies": {
+    "serverless-python-requirements": "^2.0.0-beta.6"
+  }
+}
