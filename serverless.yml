@@ -27,6 +27,14 @@ functions:
           path: actives
           method: post
           cors: true
+  get_active_cast:
+    handler: handler.get_active_cast
+    events:
+      - http:
+          path: cast
+          method: get
+          cors: true
+
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
