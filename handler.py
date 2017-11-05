@@ -1,17 +1,17 @@
-import os
-
 import json
 
-from pymongo import MongoClient
+from db import insert
 
-client = MongoClient(os.environ['MONGO_URI'])
-
-db = client['fmt']
-
-actives = db['actives']
 
 def add(event, context):
 
 	data = json.loads(event['body'])
 
-	actives.insert_one(data)
+	result = insert(data)
+
+	response = {
+		"body" : json.dumps(result),
+		"statusCode" : 200
+	}
+
+	return response
