@@ -22,4 +22,4 @@ var/
 /venv
 __pycache__
 *.pyc
-.requirements/**
+.requirements
