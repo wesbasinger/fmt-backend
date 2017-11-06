@@ -1,4 +1,4 @@
-service: fmt-backend 
+service: fmt-backend
 
 frameworkVersion: ">=1.1.0 <2.0.0"
 
@@ -20,13 +20,6 @@ provider:
 
 functions:
 
-  add:
-    handler: handler.add
-    events:
-      - http:
-          path: actives
-          method: post
-          cors: true
   get_active_cast:
     handler: handler.get_active_cast
     events:
@@ -34,7 +27,13 @@ functions:
           path: cast
           method: get
           cors: true
-
+  sign_in:
+    handler: handler.sign_in
+    events:
+      - http:
+          path: actives
+          method: post
+          cors: true
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
