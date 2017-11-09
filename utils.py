@@ -20,7 +20,12 @@ def check_geolocation(geolocation_dict):
         (float(geolocation_dict['latitude']) - CENTER_LATITUDE)**2 +
         (float(geolocation_dict['longitude']) - CENTER_LONGITUDE)**2)**0.5
 
-    if (now - float(geolocation_dict['timestamp']) > 180):
+    print("Server timestamp: ", now)
+    print("geolocation timestamp: ", geolocation_dict['timestamp'])
+
+    mod_geo_timestamp = float(geolocation_dict['timestamp'])/1000
+
+    if ((now - mod_geo_timestamp) > 60):
 
         return {
             "error" : True,

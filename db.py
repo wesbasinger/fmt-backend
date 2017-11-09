@@ -14,7 +14,7 @@ def insert(data):
 
 	actives.insert_one(data)
 
-	return {"success" : True}                                                                                                                                     
+	return {"success" : True}
 
 def get_active_cast(session):
 
@@ -26,6 +26,6 @@ def get_active_cast(session):
 
 	for doc in cursor:
 
-		results.append({"firstName":doc['firstName'], "lastName":doc['lastName']})
+		results.append({"firstName":doc['firstName'], "lastName":doc['lastName'], "_id" : str(doc['_id'])})
 
 	return results
