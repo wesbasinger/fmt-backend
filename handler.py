@@ -78,3 +78,17 @@ def sign_in(event, context):
 		}
 
 		return response
+
+def get_sign_ins(event, context):
+
+	results = db.get_active_sign_ins()
+
+	response = {
+		"body" : json.dumps(results),
+		"statusCode" : 200,
+		"headers" : {
+           "Access-Control-Allow-Origin" : "*"
+        },
+	}
+
+	return response

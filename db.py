@@ -29,3 +29,25 @@ def get_active_cast(session):
 		results.append({"firstName":doc['firstName'], "lastName":doc['lastName'], "_id" : str(doc['_id'])})
 
 	return results
+
+def get_active_sign_ins():
+
+	results = []
+
+	cursor = actives.find()
+
+	for doc in cursor:
+
+		flattened_and_encoded = {
+			"_id" : str(doc['_id']),
+			"name" : doc['name'],
+			"castMemberName" : doc["castMemberName"],
+			"castMemberId" : doc["castMemberId"],
+			"session" : doc["session"],
+			"comments" : doc["comments"],
+			"timestamp" : doc["geolocation"]["timestamp"]
+		}
+
+		results.append(flattened_and_encoded)
+
+	return results
