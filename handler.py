@@ -119,7 +119,9 @@ def process_sign_out(event, context):
 
 	elapsed_seconds = now - float(sign_in['geolocation']['timestamp'])/1000
 
-	print("Elapsed seconds: ", elapsed_seconds)
+	rounded_hours = round(elapsed_seconds / 3600, 1)
+
+	print("rounded_hours: ", rounded_hours)
 
 	response = {
 		"body" : json.dumps({"success" : True}),
