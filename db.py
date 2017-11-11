@@ -28,7 +28,10 @@ def get_active_cast(session):
 
 	for doc in cursor:
 
-		results.append({"firstName":doc['firstName'], "lastName":doc['lastName'], "_id" : str(doc['_id'])})
+		# encode object ID to be json safe
+		doc['_id'] = str(doc['_id'])
+
+		results.append(doc)
 
 	return results
 

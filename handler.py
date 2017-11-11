@@ -10,8 +10,6 @@ def get_active_cast(event, context):
 
 	results = db.get_active_cast(SESSION)
 
-	print(results)
-
 	response = {
 		"body" : json.dumps(results),
 		"statusCode" : 200,
