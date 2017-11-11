@@ -73,7 +73,7 @@ def sign_in(event, context):
 			"name" : data['name'],
 			"session" : data['session'],
 			"comments" : data['comments'],
-			"datestamp" : utils.make_datestamp(data['geolocation']['timestamp']),
+			"datestamp" : utils.make_datestamp(data['geolocation']['timestamp'], is_JS=True),
 			"cast_member" : data['castMemberName'],
 			"type" : "sign_in",
 			"elapsed_hours" : "N/A"
@@ -147,20 +147,20 @@ def process_sign_out(event, context):
 
 		result = db.delete_active(data['activeId'])
 
+		history_dict = {
+
+			"name" : sign_in['name'],
+			"session" : sign_in['session'],
+			"comments" : sign_in['comments'],
+			"datestamp" : utils.make_datestamp(now, is_JS=False),
+			"cast_member" : sign_in['castMemberName'],
+			"type" : "sign_out",
+			"elapsed_hours" : rounded_hours
+		}
+
+		db.add_history(sign_in['castMemberId'], history_dict)
+
 		if result['success']:
-
-			history_dict = {
-
-				"name" : sign_in['name'],
-				"session" : sign_in['session'],
-				"comments" : sign_in['comments'],
-				"datestamp" : utils.make_datestamp(now),
-				"cast_member" : sign_in['castMemberName'],
-				"type" : "sign_out",
-				"elapsed_hours" : rounded_hours
-			}
-
-			db.add_history(sign_in['castMemberId'], history_dict)
 
 			response['body'] = json.dumps({"success" : True, "message" : "Hours added."})
 

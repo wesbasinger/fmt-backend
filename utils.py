@@ -48,9 +48,15 @@ def check_geolocation(geolocation_dict):
             "message" : "Coordinates and timestamp verified."
         }
 
-def make_datestamp(js_timestamp):
+def make_datestamp(js_timestamp, is_JS=True):
 
-    python_timestamp = float(js_timestamp) / 1000
+    if is_JS:
+
+        python_timestamp = float(js_timestamp) / 1000
+
+    else:
+
+        python_timestamp = js_timestamp
 
     dt = datetime.fromtimestamp(python_timestamp)
 
