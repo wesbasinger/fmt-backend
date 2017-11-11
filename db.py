@@ -78,3 +78,15 @@ def add_hours(cast_id, rounded_hours):
 	else:
 
 		return {"success" : False}
+
+def delete_active(str_id):
+
+	result = actives.delete_one({"_id" : ObjectId(str_id)})
+
+	if result.deleted_count == 1:
+
+		return {"success" : True}
+
+	else:
+
+		return {"success" : False}
