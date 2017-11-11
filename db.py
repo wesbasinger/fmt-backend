@@ -59,3 +59,22 @@ def get_single_sign_in(str_id):
 	doc = actives.find_one({'_id': ObjectId(str_id)})
 
 	return doc
+
+def add_hours(cast_id, rounded_hours):
+
+	result = cast.update_one(
+		{"_id" : ObjectId(cast_id)},
+		{
+			"$inc" : {
+				"hours.SP18" : rounded_hours
+			}
+		}
+	)
+
+	if result.modified_count == 1:
+
+		return {"success" : True}
+
+	else:
+
+		return {"success" : False}

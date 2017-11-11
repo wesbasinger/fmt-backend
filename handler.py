@@ -121,7 +121,15 @@ def process_sign_out(event, context):
 
 	rounded_hours = round(elapsed_seconds / 3600, 1)
 
-	print("rounded_hours: ", rounded_hours)
+	result = db.add_hours(sign_in['castMemberId'], rounded_hours)
+
+	if result['success']:
+
+		print("Succesffulyy added hours.")
+
+	else:
+
+		print("something went wrong")
 
 	response = {
 		"body" : json.dumps({"success" : True}),
