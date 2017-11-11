@@ -97,7 +97,9 @@ def process_sign_out(event, context):
 
 	data = json.loads(event['body'])
 
-	print(data)
+	sign_in = db.get_single_sign_in(data['activeId'])
+
+	print(sign_in)
 
 	response = {
 		"body" : json.dumps({"success" : True}),

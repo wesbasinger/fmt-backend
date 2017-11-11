@@ -2,6 +2,8 @@ import os
 
 from pymongo import MongoClient
 
+from bson.objectid import ObjectId
+
 client = MongoClient(os.environ['MONGO_URI'])
 
 db = client['fmt']
@@ -51,3 +53,9 @@ def get_active_sign_ins():
 		results.append(flattened_and_encoded)
 
 	return results
+
+def get_single_sign_in(str_id):
+
+	doc = actives.find_one({'_id': ObjectId(str_id)})
+
+	return doc
