@@ -1,4 +1,6 @@
 from time import time
+from datetime import datetime, timedelta, timezone
+
 
 # geolocation_dict will be formed as such
 # {
@@ -45,3 +47,15 @@ def check_geolocation(geolocation_dict):
             "error": False,
             "message" : "Coordinates and timestamp verified."
         }
+
+def make_datestamp(js_timestamp):
+
+    python_timestamp = float(js_timestamp) / 1000
+
+    dt = datetime.fromtimestamp(python_timestamp)
+
+    utc_offset = timedelta(hours=6) #6 hours accounts for non DST
+
+    modifed_time = dt - utc_offset
+
+    return modifed_time.strftime('%Y-%m-%d %H:%M:%S')

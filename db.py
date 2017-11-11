@@ -94,3 +94,22 @@ def delete_active(str_id):
 	else:
 
 		return {"success" : False, "message" : "Delete operation failed."}
+
+def add_history(cast_id, history_dict):
+
+	result = cast.update_one(
+		{"_id" : ObjectId(cast_id)},
+		{
+			"$push" : {
+				"history" : history_dict
+			}
+		}
+	)
+
+	if result.modified_count == 1:
+
+		return {"success" : True}
+
+	else:
+
+		return {"success" : False, "message": "Update operation failed."}
