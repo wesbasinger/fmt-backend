@@ -1,0 +1,16 @@
+Thoughts for process_sign_out route.
+
+1.  Get an active _id from web client form.
+  a.  It would need to send a POST request to a route that does some pretty
+      top level work, basically managing this whole workflow.
+    - This needs to be built slowly, tested along the way and documented with
+      comments.
+      1.  SO FIRST, I'M GOING TO SET UP A BASIC POST THAT JUST CONSOLE
+          LOGS FROM THE AJAX REQUEST.
+  b.  The web client needs to send two pieces of data to the server.
+    - the _id, so I can lookup the sign in on the db.
+    - the timestamp out, so I can calculate how many hours go on the clock.
+2.  Use the timestamp to calculate how many hours go on the clock.
+    - this would be a utils.py function that takes in time and out time.
+3.  Perform an update on the cast member item from database.
+4.  Delete the active_id from the server side database.
