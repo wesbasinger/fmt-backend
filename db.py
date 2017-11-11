@@ -62,6 +62,10 @@ def get_single_sign_in(str_id):
 
 def add_hours(cast_id, rounded_hours):
 
+	if rounded_hours == 0:
+
+		return {"success" : True, "message" : "No accrued hours on the clock."}
+
 	result = cast.update_one(
 		{"_id" : ObjectId(cast_id)},
 		{
@@ -77,7 +81,7 @@ def add_hours(cast_id, rounded_hours):
 
 	else:
 
-		return {"success" : False}
+		return {"success" : False, "message": "Update operation failed."}
 
 def delete_active(str_id):
 
@@ -89,4 +93,4 @@ def delete_active(str_id):
 
 	else:
 
-		return {"success" : False}
+		return {"success" : False, "message" : "Delete operation failed."}

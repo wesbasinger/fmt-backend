@@ -144,7 +144,7 @@ def process_sign_out(event, context):
 
 	else:
 
-		response['body'] = json.dumps({"success" : False, "message" : "Something went wrong."})
+		response['body'] = json.dumps({"success" : False, "message" : result['message']})
 
 
 
