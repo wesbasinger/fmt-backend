@@ -92,3 +92,19 @@ def get_sign_ins(event, context):
 	}
 
 	return response
+
+def process_sign_out(event, context):
+
+	data = json.loads(event['body'])
+
+	print(data)
+
+	response = {
+		"body" : json.dumps({"success" : True}),
+		"statusCode" : 200,
+		"headers" : {
+           "Access-Control-Allow-Origin" : "*"
+        },
+	}
+
+	return response

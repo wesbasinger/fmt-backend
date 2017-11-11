@@ -41,6 +41,13 @@ functions:
           path: actives
           method: get
           cors: true
+  process_sign_out:
+    handler: handler.process_sign_out
+    events:
+      - http:
+          path: actives
+          method: delete
+          cors: true
 
 
 #    The following are a few example events you can configure
