@@ -14,7 +14,8 @@ def get_active_cast(event, context):
 		"body" : json.dumps(results),
 		"statusCode" : 200,
 		"headers" : {
-           "Access-Control-Allow-Origin" : "*"
+           "Access-Control-Allow-Origin" : "*",
+		   "Access-Control-Allow-Methods" : "GET, POST, DELETE"
         },
 	}
 
@@ -44,7 +45,8 @@ def sign_in(event, context):
 			"body" : json.dumps({"error": True, "message" : "Malformed data."}),
 			"statusCode" : 200,
 			"headers" : {
-	           "Access-Control-Allow-Origin" : "*"
+	           "Access-Control-Allow-Origin" : "*",
+			   "Access-Control-Allow-Methods" : "GET, POST, DELETE"
 	        },
 		}
 
@@ -58,7 +60,8 @@ def sign_in(event, context):
 			"body" : json.dumps(geo_check_result),
 			"statusCode" : 200,
 			"headers" : {
-	           "Access-Control-Allow-Origin" : "*"
+	           "Access-Control-Allow-Origin" : "*",
+			   "Access-Control-Allow-Methods" : "GET, POST, DELETE"
 	        },
 		}
 
@@ -85,7 +88,8 @@ def sign_in(event, context):
 			"body" : json.dumps(success_result),
 			"statusCode" : 200,
 			"headers" : {
-	           "Access-Control-Allow-Origin" : "*"
+	           "Access-Control-Allow-Origin" : "*",
+			   "Access-Control-Allow-Methods" : "GET, POST, DELETE"
 	        },
 		}
 
@@ -99,7 +103,8 @@ def get_sign_ins(event, context):
 		"body" : json.dumps(results),
 		"statusCode" : 200,
 		"headers" : {
-           "Access-Control-Allow-Origin" : "*"
+           "Access-Control-Allow-Origin" : "*",
+		   "Access-Control-Allow-Methods" : "GET, POST, DELETE"
         },
 	}
 
@@ -137,7 +142,8 @@ def process_sign_out(event, context):
 	response = {
 		"statusCode" : 200,
 		"headers" : {
-           "Access-Control-Allow-Origin" : "*"
+           "Access-Control-Allow-Origin" : "*",
+		   "Access-Control-Allow-Methods" : "GET, POST, DELETE"
         },
 	}
 

@@ -9,8 +9,8 @@ from datetime import datetime, timedelta, timezone
 #     "timestamp" : timestamp
 # }
 
-CENTER_LATITUDE = 32.6030983
-CENTER_LONGITUDE = -96.865876
+CENTER_LATITUDE = 32.625484
+CENTER_LONGITUDE = -96.763224
 
 TOLERANCE = 0.00974111382
 
