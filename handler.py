@@ -114,6 +114,39 @@ def process_sign_out(event, context):
 
 	data = json.loads(event['body'])
 
+	# first run geolocation check on it
+	try:
+
+		geo_check_result = utils.check_geolocation(data['geolocation'])
+
+	except KeyError:
+
+		response = {
+			"body" : json.dumps({"error": True, "message" : "Malformed data."}),
+			"statusCode" : 200,
+			"headers" : {
+	           "Access-Control-Allow-Origin" : "*",
+			   "Access-Control-Allow-Methods" : "GET, POST, DELETE"
+	        },
+		}
+
+		return response
+
+
+	if geo_check_result['error']:
+
+		response = {
+			"body" : json.dumps(geo_check_result),
+			"statusCode" : 200,
+			"headers" : {
+	           "Access-Control-Allow-Origin" : "*",
+			   "Access-Control-Allow-Methods" : "GET, POST, DELETE"
+	        },
+		}
+
+		return response
+		
+
 	sign_in = db.get_single_sign_in(data['activeId'])
 
 	# sample sign_in shown below
