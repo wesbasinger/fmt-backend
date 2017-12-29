@@ -6,6 +6,31 @@ import utils
 
 SESSION = "SP18"
 
+def add_cast(event, context):
+
+	data = json.loads(event['body'])
+
+	result = db.add_cast(data)
+
+	response = {
+		"statusCode" : 200,
+		"headers" : {
+           "Access-Control-Allow-Origin" : "*",
+		   "Access-Control-Allow-Methods" : "GET, POST, DELETE"
+        },
+	}
+
+	if result:
+
+		response['body'] = json.dumps(result)
+
+	else:
+
+		response['body'] = json.dumps({"error" :True, "message" : "Could not insert cast."})
+
+	return response
+
+
 def get_active_cast(event, context):
 
 	results = db.get_active_cast(SESSION)

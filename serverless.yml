@@ -27,6 +27,13 @@ functions:
           path: cast
           method: get
           cors: true
+  add_cast:
+    handler: handler.add_cast
+    events:
+      - http:
+          path: cast
+          method: post
+          cors: true
   post_sign_in:
     handler: handler.sign_in
     events:

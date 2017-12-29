@@ -20,6 +20,12 @@ def insert(data):
 
 	return {"success" : True}
 
+def add_cast(data):
+
+	cast.insert_one(data)
+
+	return {"success" : True}
+
 def get_active_cast(session):
 
 	cursor = cast.find(
