@@ -46,9 +46,9 @@ def get_active_sign_ins():
 	for doc in cursor:
 
 		# purge sign ins that were not signed out.
-		if(get_rounded_hours(doc['geolocation']['timestamp']) > 12) {
+		if(get_rounded_hours(doc['geolocation']['timestamp']) > 12):
+
 			actives.delete_one({"_id": doc['id']})
-		}
 
 		else:
 
