@@ -164,6 +164,7 @@ def process_sign_out(event, context):
 	# 	}
 	# }
 
+	# get_rounded_hours takes a javascript timestamp
 	rounded_hours = utils.get_rounded_hours(sign_in['geolocation']['timestamp'])
 
 	result = db.add_hours(sign_in['castMemberId'], rounded_hours)

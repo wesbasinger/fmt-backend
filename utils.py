@@ -69,8 +69,11 @@ def make_datestamp(js_timestamp, is_JS=True):
 
 def get_rounded_hours(timestamp):
 
+    # feed this function a js timestamp
+
 	now = time()
 
+    # float(timestamp)/1000 changes js timestamp to python timestame
 	elapsed_seconds = now - float(timestamp)/1000
 
 	return round(elapsed_seconds / 3600, 1)

@@ -1,5 +1,7 @@
 import os
 
+from utils import get_rounded_hours
+
 from pymongo import MongoClient
 
 from bson.objectid import ObjectId
@@ -43,17 +45,24 @@ def get_active_sign_ins():
 
 	for doc in cursor:
 
-		flattened_and_encoded = {
-			"_id" : str(doc['_id']),
-			"name" : doc['name'],
-			"castMemberName" : doc["castMemberName"],
-			"castMemberId" : doc["castMemberId"],
-			"session" : doc["session"],
-			"comments" : doc["comments"],
-			"timestamp" : doc["geolocation"]["timestamp"]
+		# purge sign ins that were not signed out.
+		if(get_rounded_hours(doc['geolocation']['timestamp']) > 12) {
+			actives.delete_one({"_id": doc['id']})
 		}
 
-		results.append(flattened_and_encoded)
+		else:
+
+			flattened_and_encoded = {
+				"_id" : str(doc['_id']),
+				"name" : doc['name'],
+				"castMemberName" : doc["castMemberName"],
+				"castMemberId" : doc["castMemberId"],
+				"session" : doc["session"],
+				"comments" : doc["comments"],
+				"timestamp" : doc["geolocation"]["timestamp"]
+			}
+
+			results.append(flattened_and_encoded)
 
 	return results
 
