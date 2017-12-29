@@ -185,7 +185,7 @@ def process_sign_out(event, context):
 			"name" : sign_in['name'],
 			"session" : sign_in['session'],
 			"comments" : sign_in['comments'],
-			"datestamp" : utils.make_datestamp(time.now(), is_JS=False),
+			"datestamp" : utils.make_datestamp(time(), is_JS=False),
 			"cast_member" : sign_in['castMemberName'],
 			"type" : "sign_out",
 			"elapsed_hours" : rounded_hours
