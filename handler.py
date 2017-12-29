@@ -145,7 +145,7 @@ def process_sign_out(event, context):
 		}
 
 		return response
-		
+
 
 	sign_in = db.get_single_sign_in(data['activeId'])
 
@@ -164,11 +164,7 @@ def process_sign_out(event, context):
 	# 	}
 	# }
 
-	now = time()
-
-	elapsed_seconds = now - float(sign_in['geolocation']['timestamp'])/1000
-
-	rounded_hours = round(elapsed_seconds / 3600, 1)
+	rounded_hours = utils.get_rounded_hours(sign_in['geolocation']['timestamp'])
 
 	result = db.add_hours(sign_in['castMemberId'], rounded_hours)
 

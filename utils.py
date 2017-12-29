@@ -65,3 +65,12 @@ def make_datestamp(js_timestamp, is_JS=True):
     modifed_time = dt - utc_offset
 
     return modifed_time.strftime('%Y-%m-%d %H:%M:%S')
+
+
+def get_rounded_hours(timestamp):
+
+	now = time()
+
+	elapsed_seconds = now - float(timestamp)/1000
+
+	return round(elapsed_seconds / 3600, 1)
