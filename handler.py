@@ -50,6 +50,7 @@ def sign_in(event, context):
 
 	data = json.loads(event['body'])
 
+
 	# expects to get a json object as such...
 	# {
 	# 	"name" : string,
@@ -62,12 +63,12 @@ def sign_in(event, context):
 	# first run geolocation check on it
 	try:
 
-		geo_check_result = utils.check_geolocation(data['geolocation'])
+		geo_check_result = utils.check_geolocation(data['geolocation'], work_from_home=data['workFromHome'])
 
-	except KeyError:
+	except:
 
 		response = {
-			"body" : json.dumps({"error": True, "message" : "Malformed data."}),
+			"body" : json.dumps({"error": True, "message" : "Error while processing timestamp and geolocation.  Try refreshing the page."}),
 			"statusCode" : 200,
 			"headers" : {
 	           "Access-Control-Allow-Origin" : "*",
@@ -102,6 +103,7 @@ def sign_in(event, context):
 			"datestamp" : utils.make_datestamp(data['geolocation']['timestamp'], is_JS=True),
 			"cast_member" : data['castMemberName'],
 			"type" : "sign_in",
+			"remote" : data['workFromHome'],
 			"elapsed_hours" : "N/A"
 		}
 
@@ -142,12 +144,12 @@ def process_sign_out(event, context):
 	# first run geolocation check on it
 	try:
 
-		geo_check_result = utils.check_geolocation(data['geolocation'])
+		geo_check_result = utils.check_geolocation(data['geolocation'], work_from_home=data['workFromHome'])
 
-	except KeyError:
+	except:
 
 		response = {
-			"body" : json.dumps({"error": True, "message" : "Malformed data."}),
+			"body" : json.dumps({"error": True, "message" : "Error while processing timestamp and geolocation.  Try refreshing the page."}),
 			"statusCode" : 200,
 			"headers" : {
 	           "Access-Control-Allow-Origin" : "*",
@@ -214,6 +216,7 @@ def process_sign_out(event, context):
 			"datestamp" : utils.make_datestamp(time(), is_JS=False),
 			"cast_member" : sign_in['castMemberName'],
 			"type" : "sign_out",
+			"remote" : data['workFromHome'],
 			"elapsed_hours" : rounded_hours
 		}
 

@@ -12,9 +12,9 @@ from datetime import datetime, timedelta, timezone
 CENTER_LATITUDE = 32.625484
 CENTER_LONGITUDE = -96.763224
 
-TOLERANCE = 99999999999999 # real tolerance 0.00974111382
+TOLERANCE = 0.00974111382
 
-def check_geolocation(geolocation_dict):
+def check_geolocation(geolocation_dict, work_from_home=False):
 
     now = time()
 
@@ -34,7 +34,7 @@ def check_geolocation(geolocation_dict):
             "message" : "Timestamp is not valid.  Please refresh page and try again"
         }
 
-    elif distance_from_center > TOLERANCE:
+    elif (distance_from_center > TOLERANCE) and not work_from_home:
 
         return {
             "error" : True,
